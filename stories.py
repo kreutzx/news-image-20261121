@@ -4,6 +4,13 @@
 # counts these records and prints the accounting on the masthead, so the
 # numbers on the page can never drift from the data.
 #
+# Selection (v3): 35 counted stories in total — the 27 headlines below
+# plus the 8 market figures in NUMBERS. An earlier 59-story cut proved
+# too dense to read at a glance, so the weakest two dozen headlines were
+# dropped and the freed space went to larger type and larger drawings.
+# All 16 drawn stories were kept; the cuts fell on text-only cards, the
+# sport strip and the late wire.
+#
 # tag: CONFIRMED (established by multiple reports), REPORTED (single or
 # attributed report), DEVELOPING (still unfolding), FORECAST (dated
 # future event the day points to). art: key into art.py's illustrations,
@@ -113,31 +120,11 @@ CARDS = [
          field="Conflict",
          head="Ukrainian drones hit a Russian fertiliser plant and a "
               "Smolensk industrial site", src="Kyiv reports"),
-    dict(section="WORLD", tag="CONFIRMED", region="Latin America",
-         field="Conflict",
-         head="Salvadoran troops in Haiti lose soldiers to explosives",
-         src="One Turn"),
     dict(section="WORLD", tag="REPORTED", region="Middle East",
          field="Conflict",
          head="Iran says it downed a US MQ-9 drone over the Strait of "
               "Hormuz", src="IRGC via Standard Topic"),
-    dict(section="WORLD", tag="CONFIRMED", region="Europe",
-         field="Politics",
-         head="Estonia moves to close its border crossings with Russia",
-         src="One Turn"),
-    dict(section="WORLD", tag="REPORTED", region="Middle East",
-         field="Justice",
-         head="Syria captures a former general accused of a 2014 "
-              "massacre", src="Regional wires"),
-    dict(section="WORLD", tag="CONFIRMED", region="Middle East",
-         field="Conflict",
-         head="Saudi-led coalition intercepts Houthi missiles aimed at "
-              "Riyadh", src="One Turn"),
     # POLITICS & MONEY
-    dict(section="POLITICS & MONEY", tag="REPORTED", region="Asia",
-         field="Politics",
-         head="After Shenzhen, Trump defends Putin ties; Zelensky "
-              "condemns the 'friend' remark", src="NYT / wires"),
     dict(section="POLITICS & MONEY", tag="FORECAST", region="Europe",
          field="Politics",
          head="Spain heads to a 29 November election as conservatives "
@@ -146,22 +133,6 @@ CARDS = [
          field="Politics",
          head="Mongolia's president resigns; elections due within four "
               "months", src="Regional wires"),
-    dict(section="POLITICS & MONEY", tag="CONFIRMED", region="Europe",
-         field="Politics",
-         head="EU approves 1 billion euros in defence aid for Ukraine; "
-              "UK pledges 1,000 drones", src="EU Council / MoD"),
-    dict(section="POLITICS & MONEY", tag="REPORTED",
-         region="North America", field="Technology",
-         head="FBI criminal database reportedly hacked as US outages "
-              "continue", src="CNN via One Turn"),
-    dict(section="POLITICS & MONEY", tag="CONFIRMED",
-         region="Latin America", field="Money",
-         head="Argentina's country risk tops 1,000 points as bonds "
-              "slump", src="One Turn"),
-    dict(section="POLITICS & MONEY", tag="DEVELOPING",
-         region="North America", field="Technology",
-         head="YouTube nears a multibillion-dollar settlement with US "
-              "schools", src="One Turn"),
     # SCIENCE & SOCIETY
     dict(section="SCIENCE & SOCIETY", tag="CONFIRMED",
          region="North America", field="Justice",
@@ -171,26 +142,6 @@ CARDS = [
          region="North America", field="Justice",
          head="Judge approves Bayer's $7.25 billion Roundup settlement",
          src="One Turn"),
-    dict(section="SCIENCE & SOCIETY", tag="CONFIRMED", region="Africa",
-         field="Justice",
-         head="Tanzanian opposition leader Tundu Lissu convicted of "
-              "sedition", src="One Turn"),
-    dict(section="SCIENCE & SOCIETY", tag="CONFIRMED", region="Europe",
-         field="Society",
-         head="UN cuts its food-aid target despite a looming starvation "
-              "threat", src="UN wires"),
-    dict(section="SCIENCE & SOCIETY", tag="CONFIRMED", region="Africa",
-         field="Health",
-         head="Uganda restricts gatherings and travel over an Ebola "
-              "threat", src="One Turn"),
-    dict(section="SCIENCE & SOCIETY", tag="CONFIRMED", region="Space",
-         field="Science",
-         head="Curiosity rover photographs twilight clouds drifting "
-              "over Mars", src="One Turn"),
-    dict(section="SCIENCE & SOCIETY", tag="CONFIRMED",
-         region="North America", field="Science",
-         head="Blue sucker fish found to live well beyond 100 years",
-         src="One Turn"),
 ]
 
 # ---- Sport strip ------------------------------------------------------
@@ -198,17 +149,6 @@ SPORT = [
     dict(tag="CONFIRMED", region="Europe", field="Sport",
          head="Alcaraz beats Cobolli to stay unbeaten in ATP Finals "
               "group play in Turin"),
-    dict(tag="CONFIRMED", region="North America", field="Sport",
-         head="A Lim Kim leads the LPGA finale after a hole-in-one in "
-              "Florida"),
-    dict(tag="CONFIRMED", region="Asia", field="Sport",
-         head="Choi Min-jeong cruises at the short-track World Tour "
-              "stop in Seoul"),
-    dict(tag="CONFIRMED", region="Europe", field="Sport",
-         head="Mao Shimada leads the Finlandia Trophy after the short "
-              "program"),
-    dict(tag="CONFIRMED", region="North America", field="Sport",
-         head="Washington Spirit reach the NWSL Championship final"),
     dict(tag="FORECAST", region="North America", field="Sport",
          head="Sunday night in Las Vegas: Verstappen starts the Grand "
               "Prix on pole"),
@@ -230,23 +170,8 @@ NUMBERS = [
 TICKER = [
     dict(tag="CONFIRMED", region="Asia", field="Politics",
          head="Seoul: ruling party moves to impeach the chief justice"),
-    dict(tag="FORECAST", region="Asia", field="Politics",
-         head="Nepal PM Balendra Shah to make his first visit to India"),
-    dict(tag="REPORTED", region="Europe", field="Politics",
-         head="Trump tells Europe to defund Ukraine after the Putin "
-              "summit"),
-    dict(tag="REPORTED", region="Europe", field="Money",
-         head="Nordic police flag Revolut in a Russia-linked laundering "
-              "probe"),
     dict(tag="CONFIRMED", region="Africa", field="Energy",
          head="Kenya begins onshore crude drilling in Turkana"),
-    dict(tag="REPORTED", region="North America", field="Technology",
-         head="Trump vows tariffs for US firms building data centres "
-              "abroad"),
-    dict(tag="REPORTED", region="North America", field="Justice",
-         head="$22.5M haul in what police call a staggering train heist"),
-    dict(tag="CONFIRMED", region="Oceania", field="Climate",
-         head="US sells deep-sea mining leases off American Samoa"),
 ]
 
 # ---- UTC timeline strip ------------------------------------------------
@@ -260,8 +185,7 @@ TIMELINE = [
 
 DATE_CHECK = (
     "DATE CHECK — WHAT WE LEFT OUT, AND WHY: the Las Vegas race itself "
-    "(it runs Sunday) · Anthropic's stock-market debut (that was "
-    "Thursday's news) · any COP31 final text (still unwritten at press "
-    "time) · Spain's election result (voting is 29 November). If it is "
-    "not dated 21 November 2026, it is not on this page."
+    "(it runs Sunday) · Anthropic's market debut (Thursday's news) · "
+    "any COP31 final text (still unwritten) · Spain's election result "
+    "(29 November). Not dated 21 November 2026? Not on this page."
 )

@@ -25,24 +25,25 @@ def font(name, size):
     return ImageFont.truetype(FD + name, size)
 
 
-F_TITLE = font("NotoSerif-Black.ttf", 47)
+F_TITLE = font("NotoSerif-Black.ttf", 50)
 F_DATE = font("NotoSans-Bold.ttf", 13)
-F_ACCT = font("NotoSans-Bold.ttf", 14)
+F_ACCT = font("NotoSans-Bold.ttf", 15)
 F_TIME_T = font("NotoSans-Bold.ttf", 10)
 F_TIME_L = font("NotoSans-Regular.ttf", 10)
-F_HERO_H = font("NotoSerif-Black.ttf", 19)
-F_HERO_D = font("NotoSans-Regular.ttf", 10)
-F_LEAD_H = font("NotoSerif-Bold.ttf", 13)
-F_LEAD_D = font("NotoSans-Regular.ttf", 9)
-F_WIRE_H = font("NotoSans-SemiBold.ttf", 10)
-F_CARD = font("NotoSans-SemiBold.ttf", 10)
+F_HERO_H = font("NotoSerif-Black.ttf", 21)
+F_HERO_D = font("NotoSans-Regular.ttf", 11)
+F_LEAD_H = font("NotoSerif-Bold.ttf", 14)
+F_LEAD_D = font("NotoSans-Regular.ttf", 10)
+F_WIRE_H = font("NotoSans-SemiBold.ttf", 11)
+F_CARD = font("NotoSans-SemiBold.ttf", 11)
 F_CARD_SRC = font("NotoSans-Regular.ttf", 9)
 F_META = font("NotoSans-Bold.ttf", 8)
-F_SEC = font("NotoSans-Bold.ttf", 12)
-F_NUM_V = font("NotoSerif-Bold.ttf", 14)
-F_NUM_L = font("NotoSans-Bold.ttf", 8)
-F_SMALL = font("NotoSans-Regular.ttf", 9)
-F_SMALL_B = font("NotoSans-Bold.ttf", 9)
+F_SEC = font("NotoSans-Bold.ttf", 13)
+F_NUM_V = font("NotoSerif-Bold.ttf", 15)
+F_NUM_L = font("NotoSans-Bold.ttf", 9)
+F_SMALL = font("NotoSans-Regular.ttf", 10)
+F_SMALL_B = font("NotoSans-Bold.ttf", 10)
+F_FINE = font("NotoSans-Regular.ttf", 9)
 
 TAG_COLORS = {
     "CONFIRMED": (30, 107, 82), "REPORTED": (91, 75, 138),
@@ -101,30 +102,30 @@ def art_box(d, story, x, y, w_, h_):
 
 def hero_panel(d, x, y, w_, h_, story):
     panel(d, x, y, w_, h_)
-    art_box(d, story, x + 1, y + 1, w_ - 2, 74)
-    ty = y + 82
+    art_box(d, story, x + 1, y + 1, w_ - 2, 84)
+    ty = y + 92
     meta_line(d, x + 9, ty, story, w_ - 18)
-    ty += 15
-    ty = block(d, x + 9, ty, story["head"], F_HERO_H, w_ - 18, 21, max_lines=2)
-    block(d, x + 9, ty + 1, story["deck"], F_HERO_D, w_ - 18, 11, max_lines=2)
+    ty += 16
+    ty = block(d, x + 9, ty, story["head"], F_HERO_H, w_ - 18, 24, max_lines=2)
+    block(d, x + 9, ty + 2, story["deck"], F_HERO_D, w_ - 18, 13, max_lines=2)
 
 
 def lead_panel(d, x, y, w_, h_, story):
     panel(d, x, y, w_, h_)
-    art_box(d, story, x + 1, y + 1, w_ - 2, 48)
-    ty = y + 54
+    art_box(d, story, x + 1, y + 1, w_ - 2, 58)
+    ty = y + 65
     meta_line(d, x + 8, ty, story, w_ - 16)
-    ty += 14
-    ty = block(d, x + 8, ty, story["head"], F_LEAD_H, w_ - 16, 15, max_lines=2)
-    block(d, x + 8, ty + 1, story["deck"], F_LEAD_D, w_ - 16, 11, max_lines=2)
+    ty += 15
+    ty = block(d, x + 8, ty, story["head"], F_LEAD_H, w_ - 16, 17, max_lines=2)
+    block(d, x + 8, ty + 1, story["deck"], F_LEAD_D, w_ - 16, 12, max_lines=2)
 
 
 def wire_panel(d, x, y, w_, h_, story):
     panel(d, x, y, w_, h_)
-    art_box(d, story, x + 1, y + 1, 52, h_ - 2)
-    tx = x + 61
-    ty = block(d, tx, y + 5, story["head"], F_WIRE_H, w_ - 69, 12, max_lines=2)
-    meta_line(d, tx, max(ty + 2, y + h_ - 15), story, w_ - 69)
+    art_box(d, story, x + 1, y + 1, 64, h_ - 2)
+    tx = x + 73
+    ty = block(d, tx, y + 6, story["head"], F_WIRE_H, w_ - 81, 13, max_lines=2)
+    meta_line(d, tx, max(ty + 2, y + h_ - 15), story, w_ - 81)
 
 
 SECTION_ORDER = ["WORLD", "POLITICS & MONEY", "SCIENCE & SOCIETY"]
@@ -133,21 +134,21 @@ SECTION_COLORS = {"WORLD": (32, 80, 122), "POLITICS & MONEY": (30, 107, 82),
 
 
 def card(d, x, y, w_, story):
-    # headline (bold) with source appended in grey, max 2 lines
-    head = story["head"]
-    lines = wrap(d, head, F_CARD, w_ - 14)
+    # headline (semibold) with source appended in grey, max 2 lines;
+    # the row height follows the lines actually drawn, plus breathing room
+    lines = wrap(d, story["head"], F_CARD, w_ - 14)[:2]
     sq = TAG_COLORS[story["tag"]]
-    d.rectangle([x, y + 2, x + 6, y + 8], fill=sq)
+    d.rectangle([x, y + 3, x + 6, y + 10], fill=sq)
     ty = y
-    for i, ln in enumerate(lines[:2]):
+    for i, ln in enumerate(lines):
         d.text((x + 10, ty), ln, font=F_CARD, fill=P["ink"])
-        ty += 11
-        if i == len(lines[:2]) - 1:
+        if i == len(lines) - 1:
             tail = "  · " + story["src"]
             lx = x + 10 + d.textlength(ln, font=F_CARD)
             if lx + d.textlength(tail, font=F_CARD_SRC) <= x + w_:
-                d.text((lx, ty - 11 + 1), tail, font=F_CARD_SRC, fill=P["grey"])
-    return y + 23
+                d.text((lx, ty + 2), tail, font=F_CARD_SRC, fill=P["grey"])
+        ty += 13
+    return ty + 7
 
 
 def compose():
@@ -164,19 +165,19 @@ def compose():
     # ---- masthead -----------------------------------------------------
     title = "THE WORLD IN ONE DAY"
     tw = d.textlength(title, font=F_TITLE)
-    d.text(((W - tw) / 2, 10), title, font=F_TITLE, fill=P["ink"])
-    d.line([MARGIN, 66, W - MARGIN, 66], fill=P["ink"], width=2)
-    d.text((MARGIN, 71), "SATURDAY 21 NOVEMBER 2026", font=F_DATE, fill=P["red"])
+    d.text(((W - tw) / 2, 8), title, font=F_TITLE, fill=P["ink"])
+    d.line([MARGIN, 68, W - MARGIN, 68], fill=P["ink"], width=2)
+    d.text((MARGIN, 73), "SATURDAY 21 NOVEMBER 2026", font=F_DATE, fill=P["red"])
     rtxt = "ONE IMAGE - EVERY STORY SOURCED AND TAGGED"
-    d.text((W - MARGIN - d.textlength(rtxt, font=F_DATE), 71), rtxt, font=F_DATE, fill=P["ink"])
+    d.text((W - MARGIN - d.textlength(rtxt, font=F_DATE), 73), rtxt, font=F_DATE, fill=P["ink"])
     acct = (f"{total} STORIES - {drawn} DRAWN - {len(regions)} REGIONS - "
             f"{len(fields)} FIELDS - ALL FROM THIS SATURDAY")
-    d.rectangle([MARGIN, 90, W - MARGIN, 112], fill=P["ink"])
+    d.rectangle([MARGIN, 92, W - MARGIN, 114], fill=P["ink"])
     aw = d.textlength(acct, font=F_ACCT)
-    d.text(((W - aw) / 2, 94), acct, font=F_ACCT, fill=P["paper"])
+    d.text(((W - aw) / 2, 96), acct, font=F_ACCT, fill=P["paper"])
 
     # ---- UTC timeline --------------------------------------------------
-    ty = 120
+    ty = 122
     d.line([MARGIN + 6, ty + 5, W - MARGIN - 6, ty + 5], fill=P["gold"], width=2)
     step = CW / len(TIMELINE)
     for i, (when, what) in enumerate(TIMELINE):
@@ -188,7 +189,7 @@ def compose():
 
     # ---- heroes ---------------------------------------------------------
     heroes = [s for s in STORIES if s["kind"] == "hero"]
-    hy, hh = 158, 164
+    hy, hh = 160, 188
     hw = (CW - 12) // 2
     for i, s in enumerate(heroes):
         hero_panel(d, MARGIN + i * (hw + 12), hy, hw, hh, s)
@@ -198,66 +199,63 @@ def compose():
     lw = (CW - 2 * 10) // 3
     for r in range(2):
         for c in range(3):
-            lead_panel(d, MARGIN + c * (lw + 10), 328 + r * 124, lw, 124, leads[r * 3 + c])
+            lead_panel(d, MARGIN + c * (lw + 10), 356 + r * 148, lw, 140, leads[r * 3 + c])
 
     # ---- picture wire: 2 rows of 4 --------------------------------------
     wires = [s for s in STORIES if s["kind"] == "wire"]
     ww = (CW - 3 * 8) // 4
     for r in range(2):
         for c in range(4):
-            wire_panel(d, MARGIN + c * (ww + 8), 582 + r * 58, ww, 54, wires[r * 4 + c])
+            wire_panel(d, MARGIN + c * (ww + 8), 660 + r * 62, ww, 56, wires[r * 4 + c])
 
     # ---- by the numbers ---------------------------------------------------
-    ny = 704
-    d.rectangle([MARGIN, ny, W - MARGIN, ny + 32], fill=(233, 228, 210), outline=P["ink"])
+    ny = 786
+    d.rectangle([MARGIN, ny, W - MARGIN, ny + 34], fill=(233, 228, 210), outline=P["ink"])
     nw = CW / len(NUMBERS)
     for i, (label, value, delta) in enumerate(NUMBERS):
         cx = MARGIN + nw * i
         if i:
-            d.line([cx, ny + 4, cx, ny + 30], fill=P["grey"], width=1)
+            d.line([cx, ny + 4, cx, ny + 32], fill=P["grey"], width=1)
         vt = (value + " " + delta).strip()
-        d.text((cx + nw / 2 - d.textlength(vt, font=F_NUM_V) / 2, ny + 3), vt,
+        d.text((cx + nw / 2 - d.textlength(vt, font=F_NUM_V) / 2, ny + 4), vt,
                font=F_NUM_V, fill=P["red"] if delta.startswith("-") else P["ink"])
-        d.text((cx + nw / 2 - d.textlength(label, font=F_NUM_L) / 2, ny + 22), label,
+        d.text((cx + nw / 2 - d.textlength(label, font=F_NUM_L) / 2, ny + 23), label,
                font=F_NUM_L, fill=P["grey"])
 
     # ---- section columns ---------------------------------------------------
-    sy = 742
+    sy = 828
     colw = (CW - 2 * 14) // 3
     for ci, sec in enumerate(SECTION_ORDER):
         cx = MARGIN + ci * (colw + 14)
-        d.rectangle([cx, sy, cx + colw, sy + 15], fill=SECTION_COLORS[sec])
+        d.rectangle([cx, sy, cx + colw, sy + 17], fill=SECTION_COLORS[sec])
         d.text((cx + 6, sy + 2), sec, font=F_SEC, fill=P["white"])
-        cy = sy + 20
+        cy = sy + 23
         for s in [c for c in CARDS if c["section"] == sec]:
             cy = card(d, cx, cy, colw, s)
 
     # ---- sport strip ---------------------------------------------------------
-    py = 928
-    d.line([MARGIN, py - 4, W - MARGIN, py - 4], fill=P["ink"], width=1)
+    py = 954
+    d.line([MARGIN, py - 5, W - MARGIN, py - 5], fill=P["ink"], width=1)
     d.text((MARGIN, py), "SPORT", font=F_SMALL_B, fill=P["red"])
-    sx = MARGIN + 44
-    half = (len(SPORT) + 1) // 2
-    roww = (W - MARGIN - sx) / half
+    sx = MARGIN + 48
+    roww = (W - MARGIN - sx) / len(SPORT)
     for i, s in enumerate(SPORT):
-        r, c = divmod(i, half)
-        tx = sx + c * roww
-        tyy = py + r * 13
-        d.rectangle([tx, tyy + 2, tx + 5, tyy + 7], fill=TAG_COLORS[s["tag"]])
-        block(d, tx + 9, tyy, s["head"], F_SMALL, roww - 14, 11, max_lines=1)
+        tx = sx + i * roww
+        d.rectangle([tx, py + 3, tx + 5, py + 8], fill=TAG_COLORS[s["tag"]])
+        block(d, tx + 9, py, s["head"], F_SMALL, roww - 14, 12, max_lines=1)
 
     # ---- late wire ticker ------------------------------------------------------
-    ly = 958
-    d.rectangle([MARGIN, ly, W - MARGIN, ly + 36], outline=P["red"], width=1)
-    d.rectangle([MARGIN, ly, MARGIN + 84, ly + 36], fill=P["red"])
-    d.text((MARGIN + 8, ly + 4), "LATE", font=F_SEC, fill=P["white"])
-    d.text((MARGIN + 8, ly + 19), "WIRE", font=F_SEC, fill=P["white"])
+    ly = 972
+    d.rectangle([MARGIN, ly, W - MARGIN, ly + 30], outline=P["red"], width=1)
+    d.rectangle([MARGIN, ly, MARGIN + 84, ly + 30], fill=P["red"])
+    d.text((MARGIN + 8, ly + 2), "LATE", font=F_SEC, fill=P["white"])
+    d.text((MARGIN + 8, ly + 16), "WIRE", font=F_SEC, fill=P["white"])
     items = "  ///  ".join(s["head"] for s in TICKER)
-    block(d, MARGIN + 92, ly + 3, items, F_SMALL, CW - 100, 11, max_lines=3)
+    block(d, MARGIN + 92, ly + 4, items, F_SMALL, CW - 100, 12, max_lines=2)
 
     # ---- date check + colophon ---------------------------------------------------
-    fy = 999
-    block(d, MARGIN, fy, DATE_CHECK, F_SMALL, CW, 11, fill=(70, 60, 40), max_lines=2)
+    fy = 1005
+    block(d, MARGIN, fy, DATE_CHECK, F_FINE, CW, 9, fill=(70, 60, 40), max_lines=2)
     return img, total, drawn, len(regions), len(fields)
 
 
